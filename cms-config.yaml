@@ -1,0 +1,665 @@
+site:
+  - type: Record
+    name: user
+  - type: Record
+    name: country
+  - type: Record
+    name: celebrity
+  - type: Record
+    name: topic
+  - type: Record
+    name: poll
+  - type: Record
+    name: question
+  - type: Record
+    name: choice
+records:
+  country:
+    list:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - type: _created_at
+        - type: _updated_at
+    show:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - type: _created_at
+        - type: _updated_at
+    edit:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - type: _created_at
+        - type: _updated_at
+  user:
+    list:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: last_login_at
+          type: DateTime
+        - name: phone_number
+          type: String
+        - name: birthday
+          type: DateTime
+        - name: image_id
+          type: ImageAsset
+        - name: first_name
+          type: String
+        - name: last_name
+          type: String
+        - name: display_name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: deleted
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+      filters:
+        - name: username
+          type: String
+        - name: display_name
+          type: String
+        - name: email
+          type: String
+    show:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: last_login_at
+          type: DateTime
+        - name: phone_number
+          type: String
+        - name: birthday
+          type: DateTime
+        - name: image_id
+          type: ImageAsset
+        - name: first_name
+          type: String
+        - name: last_name
+          type: String
+        - name: display_name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_admin
+          type: Boolean
+        - name: is_writer
+          type: Boolean
+        - name: deleted
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+    edit:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: last_login_at
+          type: DateTime
+        - name: phone_number
+          type: String
+        - name: birthday
+          type: DateTime
+        - name: image_id
+          type: ImageAsset
+        - name: first_name
+          type: String
+        - name: last_name
+          type: String
+        - name: display_name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_admin
+          type: Boolean
+        - name: is_writer
+          type: Boolean
+        - name: deleted
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+  celebrity:
+    list:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: user_id
+          label: User
+          type: Reference
+          reference_target: user
+          reference_field_name: display_name
+        - name: display_name
+          label: Display name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: followers_count
+          label: Follower count
+          type: Integer
+        - name: deleted
+          type: Boolean
+      filters:
+        - name: username
+          type: String
+        - name: display_name
+          type: String
+    show:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: user_id
+          label: User
+          type: Reference
+          reference_target: user
+          reference_field_name: display_name
+        - name: display_name
+          label: Display name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: followers_count
+          label: Follower count
+          type: Integer
+        - name: deleted
+          type: Boolean
+    edit:
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: user_id
+          label: User
+          type: Reference
+          reference_target: user
+          reference_field_name: display_name
+        - name: display_name
+          label: Display name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: followers_count
+          label: Follower count
+          type: Integer
+        - name: deleted
+          type: Boolean
+    new:
+      label: New Celebrity
+      fields:
+        - type: _id
+        - name: username
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: user_id
+          label: User
+          type: Reference
+          reference_target: user
+          reference_field_name: display_name
+        - name: display_name
+          label: Display name
+          type: String
+        - name: country_id
+          label: Country
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: followers_count
+          label: Follower count
+          type: Integer
+        - name: deleted
+          type: Boolean
+  topic:
+    list:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: country_id
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_international
+          type: Boolean
+        - name: is_featured
+          type: Boolean
+        - name: is_disabled
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+      filters:
+        - name: name
+          type: String
+        - name: country_id
+          type: String
+          label: Country
+          target: country
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+    show:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: country_id
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_international
+          type: Boolean
+        - name: is_featured
+          type: Boolean
+        - name: is_disabled
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+    edit:
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: country_id
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_international
+          type: Boolean
+        - name: is_featured
+          type: Boolean
+        - name: is_disabled
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+    new:
+      label: New Topic
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: country_id
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+        - name: is_international
+          type: Boolean
+        - name: is_featured
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+  poll:
+    list:
+      label: Polls
+      perPage: 10
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: topics
+          type: Reference
+          reference_target: topic
+          reference_field_name: name
+          via_association_record: poll_topic
+        - name: start_time
+          type: DateTime
+        - name: end_time
+          type: DateTime
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: is_active
+          type: Boolean
+        - name: is_live
+          type: Boolean
+        - name: likes
+          type: Integer
+        - name: answers
+          type: Integer
+        - name: views
+          type: Integer
+        - name: country_id
+          label: Countries
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+          via_association_record: poll_country
+        - name: promoted
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - name: is_published
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+      filters:
+        - name: is_published
+          type: Boolean
+    show:
+      label: View Poll
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: description
+          type: String
+        - name: topics
+          type: Reference
+          reference_target: topic
+          reference_field_name: name
+          via_association_record: poll_topic
+        - name: start_time
+          type: DateTime
+        - name: end_time
+          type: DateTime
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: is_active
+          type: Boolean
+        - name: is_live
+          type: Boolean
+        - name: likes
+          type: Integer
+        - name: answers
+          type: Integer
+        - name: views
+          type: Integer
+        - name: country_id
+          label: Countries
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+          via_association_record: poll_country
+        - name: promoted
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - name: is_published
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+    edit:
+      label: Edit Poll
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: description
+          type: String
+        - name: topics
+          type: Reference
+          reference_target: topic
+          reference_field_name: name
+          via_association_record: poll_topic
+        - name: start_time
+          type: DateTime
+        - name: end_time
+          type: DateTime
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: is_active
+          type: Boolean
+        - name: is_live
+          type: Boolean
+        - name: likes
+          type: Integer
+        - name: answers
+          type: Integer
+        - name: views
+          type: Integer
+        - name: country_id
+          label: Countries
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+          via_association_record: poll_country
+        - name: promoted
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+        - name: is_published
+          type: Boolean
+        - type: _created_at
+        - type: _updated_at
+    new:
+      label: New Poll
+      fields:
+        - type: _id
+        - name: name
+          type: String
+        - name: description
+          type: String
+        - name: topics
+          type: Reference
+          reference_target: topic
+          reference_field_name: name
+          via_association_record: poll_topic
+        - name: start_time
+          type: DateTime
+        - name: end_time
+          type: DateTime
+        - name: image_id
+          label: Image
+          type: ImageAsset
+        - name: is_active
+          type: Boolean
+        - name: is_live
+          type: Boolean
+        - name: likes
+          type: Integer
+        - name: answers
+          type: Integer
+        - name: views
+          type: Integer
+        - name: country_id
+          label: Countries
+          type: Reference
+          reference_target: country
+          reference_field_name: name
+          via_association_record: poll_country
+        - name: promoted
+          type: Boolean
+        - name: is_adult_only
+          label: Adult Content
+          type: Boolean
+  question:
+    list:
+      fields:
+        - name: title
+          type: String
+        - name: type
+          type: String
+        - name: poll_id
+          type: Reference
+          reference_target: poll
+          reference_field_name: name
+        - name: ordering
+          type: Integer
+        - name: deleted
+          type: Boolean
+    show:
+      fields:
+        - name: title
+          type: String
+        - name: type
+          type: String
+        - name: poll_id
+          type: Reference
+          reference_target: poll
+          reference_field_name: name
+        - name: ordering
+          type: Integer
+        - name: deleted
+          type: Boolean
+    edit:
+      fields:
+        - name: title
+          type: String
+        - name: type
+          type: String
+        - name: poll_id
+          type: Reference
+          reference_target: poll
+          reference_field_name: name
+        - name: ordering
+          type: Integer
+        - name: deleted
+          type: Boolean
+    new:
+      fields:
+        - name: title
+          type: String
+        - name: type
+          type: String
+        - name: poll_id
+          type: Reference
+          reference_target: poll
+          reference_field_name: name
+        - name: ordering
+          type: Integer
+        - name: deleted
+          type: Boolean
+  choice:
+    list:
+      fields:
+        - type: _id
+        - name: content
+          type: String
+        - name: question_id
+          type: Reference
+          reference_target: question
+          reference_field_name: _id
+        - name: image_id
+          type: ImageAsset
+        - name: select_count
+          type: Integer
+        - name: ordering
+          type: Integer
+    show:
+      fields:
+        - type: _id
+        - name: content
+          type: String
+        - name: question_id
+          type: Reference
+          reference_target: question
+          reference_field_name: _id
+        - name: image_id
+          type: ImageAsset
+        - name: select_count
+          type: Integer
+        - name: ordering
+          type: Integer
+    edit:
+      fields:
+        - type: _id
+        - name: content
+          type: String
+        - name: question_id
+          type: Reference
+          reference_target: question
+          reference_field_name: _id
+        - name: image_id
+          type: ImageAsset
+        - name: select_count
+          type: Integer
+        - name: ordering
+          type: Integer
+    new:
+      fields:
+        - type: _id
+        - name: content
+          type: String
+        - name: question_id
+          type: Reference
+          reference_target: question
+          reference_field_name: _id
+        - name: image_id
+          type: ImageAsset
+        - name: select_count
+          type: Integer
+        - name: ordering
+          type: Integer
+association_records:
+  poll_topic:
+    fields:
+      - name: poll_id
+        type: Reference
+        reference_target: poll
+      - name: topic_id
+        type: Reference
+        reference_target: topic
+  poll_country:
+    fields:
+      - name: poll_id
+        type: Reference
+        reference_target: poll
+      - name: country_id
+        type: Reference
+        reference_target: country

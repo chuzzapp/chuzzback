@@ -1,0 +1,3 @@
+[submodule "skygear-content-manager"]
+	path = cms
+	url = git@github.com:oursky/skygear-content-manager.git

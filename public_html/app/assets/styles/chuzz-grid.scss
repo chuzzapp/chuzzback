@@ -1,0 +1,80 @@
+[icon-only] ion-icon {
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    font-size: 1.5em;
+}
+
+[icon-only] ion-icon.defaul-icon {
+    color: grey;
+}
+
+[icon-only] ion-icon.heart {
+    color: red;
+}
+
+[icon-only] ion-icon.star {
+    color: #fad024 !important;
+}
+
+[icon-only] ion-icon.notification {
+    color: color($colors, chuzz-default) !important;
+}
+
+ion-card ion-row ion-col button:last-child {
+    padding-right: 0.5em !important;
+}
+
+.card-content-md, .card-content-ios, .card-content-wp, 
+.card-title-md, .card-title-ios, .card-title-wp {
+    padding-bottom: 0;
+}
+
+.card-md, .card-ios, .card-wp {
+    margin: 0;
+    width: calc(100% - 10px);
+}
+
+.poll-card-from-wrapper {
+    margin: 5px;
+    width: 100%
+}
+
+.poll-card-from {
+    display: inline;
+    img {
+        width: 20px;
+        height: 20px;
+        border-radius: 25px;
+        display: inline-block;
+        margin-right: 3px;
+    }
+
+    span {
+        line-height: 15px;
+        font-size: 1rem;
+        font-weight: bold;
+        display: inline-block;
+        vertical-align: super;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: calc(100% - 60px);
+    }
+}
+
+.poll-card-from-time {
+    font-size: 0.8rem;
+    color: #1B4646;
+    float: right;
+    margin-right: 10px;
+}
+
+.poll-card-red-dot {
+    background-color: #FA001C;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: 20px;
+    top: 22px;
+}

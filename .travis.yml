@@ -1,0 +1,44 @@
+language: python
+
+git:
+  # disable travis cloning skygear-content-manager before we setting up
+  # proper ssh keys in build-cms-client.sh
+  submodules: false
+
+notifications:
+  slack: oursky:FPQpsZ2n4GILaFcE7UhczoSJ
+
+before_install:
+- npm install -g skycli
+
+script:
+- echo "success"
+
+after_success:
+- if [ "$TRAVIS_BRANCH" == "production" ]; then
+    mv cms-config/.env.production cms-config/.env;
+    export DEPLOY_PRODUCTION=YES;
+    echo "CMS build config:";
+    cat "cms-config/.env";
+    rm skygear.json;
+    mv skygear-production.json skygear.json;
+  fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+    mv cms-config/.env.staging cms-config/.env;
+    echo "CMS build config:";
+    cat "cms-config/.env";
+  fi
+- if [ "$TRAVIS_PULL_REQUEST" == false ]; then
+    if [ "$TRAVIS_BRANCH" == "production" ] || [ "$TRAVIS_BRANCH" == "master" ]; then
+      openssl aes-256-cbc -K $encrypted_028426824cb7_key -iv $encrypted_028426824cb7_iv -in travis/skygear-content-manager.id_rsa.enc -out "skygear-content-manager.id_rsa" -d;
+      chmod 0600 skygear-content-manager.id_rsa;
+      
+      openssl aes-256-cbc -K $encrypted_3c8991259e64_key -iv $encrypted_3c8991259e64_iv -in travis/chuzz-app.id_rsa.enc -out "chuzz-app.id_rsa" -d;
+      chmod 0600 chuzz-app.id_rsa;
+
+      ssh-agent bash -c 'ssh-add chuzz-app.id_rsa; ./scripts/build-app.sh';
+
+      skycli login;
+      skycli deploy;
+    fi
+  fi

@@ -1,0 +1,15 @@
+{% extends "base_mail.html" %}
+{% block content %}
+  <div style="padding:20px">
+    <div>
+      <p style="color:#484848;">{{ greeting }}<br>
+        <br>Please login with this code below for Chuzz app:<br>
+        <br><b>{{ code }}</b><br>
+        <br>If you haven't inquire one, please ignore this email.<br>
+        <br>Best Wishes,<br>
+        Chuzz
+      </p>
+    </div>
+    </div>
+  </div>
+{% endblock %}
