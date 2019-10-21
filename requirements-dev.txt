@@ -8,7 +8,7 @@ certifi==2017.7.27.1
 cffi==1.11.2
 chardet==3.0.4
 docutils==0.14
-ecdsa==0.13
+ecdsa==0.13.3
 future==0.16.0
 idna==2.6
 jinja2==2.9
